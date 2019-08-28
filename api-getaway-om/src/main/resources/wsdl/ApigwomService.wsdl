@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<wsdl:definitions
+        name="ApigwomService"
+        targetNamespace="http://services.ws1.com/"
+        xmlns:tns="http://services.ws1.com/"
+        xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+        xmlns:ns1="http://exception.teamdevsolution.com/"
+        xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+        xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+        xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702"
+        xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+
+    <wsdl:types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                    targetNamespace="http://services.ws1.com/"
+                    xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+                    xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+                    xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702"
+                    xmlns:tns="http://services.ws1.com/">
+
+            <xs:element name="TcheckBal" type="tns:TcheckBal"/>
+            <xs:element name="doCheckTrans" type="tns:doCheckTrans"/>
+            <xs:element name="doM2M" type="tns:doM2M"/>
+            <xs:element name="doM2S" type="tns:doM2S"/>
+            <xs:element name="doS2M" type="tns:doS2M"/>
+            <xs:element name="doS2S" type="tns:doS2S"/>
+
+            <xs:element name="TcheckBalResponse" type="tns:TcheckBalResponse"/>
+            <xs:element name="doCheckTransResponse" type="tns:doCheckTransResponse"/>
+            <xs:element name="doM2MResponse" type="tns:doM2MResponse"/>
+            <xs:element name="doM2SResponse" type="tns:doM2SResponse"/>
+            <xs:element name="doS2MResponse" type="tns:doS2MResponse"/>
+            <xs:element name="doS2SResponse" type="tns:doS2SResponse"/>
+
+            <xs:complexType name="TcheckBal">
+                <xs:sequence>
+                    <xs:element  name="subsmsisdn" type="xs:string"/>
+                    <xs:element  name="partnid" type="xs:string"/>
+                    <xs:element  name="transid" type="xs:string"/>
+                    <xs:element  name="currency" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:complexType name="doCheckTrans">
+                <xs:sequence>
+                    <xs:element  name="mermsisdn" type="xs:string"/>
+                    <xs:element  name="partnid" type="xs:string"/>
+                    <xs:element  name="transid" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:complexType name="doM2M">
+                <xs:sequence>
+                    <xs:element  name="mermsisdn1" type="xs:string"/>
+                    <xs:element  name="mermsisdn2" type="xs:string"/>
+                    <xs:element  name="partnId" type="xs:string"/>
+                    <xs:element  name="transid" type="xs:string"/>
+                    <xs:element  name="currency" type="xs:string"/>
+                    <xs:element  name="amount" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:complexType name="doM2S">
+                <xs:sequence>
+                    <xs:element  name="subsmsisdn" type="xs:string"/>
+                    <xs:element  name="mermsisdn" type="xs:string"/>
+                    <xs:element  name="partnId" type="xs:string"/>
+                    <xs:element  name="transid" type="xs:string"/>
+                    <xs:element  name="currency" type="xs:string"/>
+                    <xs:element  name="amount" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:complexType name="doS2M">
+                <xs:sequence>
+                    <xs:element  name="subsmsisdn" type="xs:string"/>
+                    <xs:element  name="mermsisdn" type="xs:string"/>
+                    <xs:element  name="partnId" type="xs:string"/>
+                    <xs:element  name="callbackurl" type="xs:string"/>
+                    <xs:element  name="transid" type="xs:string"/>
+                    <xs:element  name="currency" type="xs:string"/>
+                    <xs:element  name="amount" type="xs:string"/>
+                    <xs:element  name="message_s2m" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:complexType name="doS2S">
+                <xs:sequence>
+                    <xs:element  name="subsmsisdn" type="xs:string"/>
+                    <xs:element  name="subsmsisdn2" type="xs:string"/>
+                    <xs:element  name="callbackurl" type="xs:string"/>
+                    <xs:element  name="partnId" type="xs:string"/>
+                    <xs:element  name="transid" type="xs:string"/>
+                    <xs:element  name="currency" type="xs:string"/>
+                    <xs:element  name="amount" type="xs:string"/>
+                    <xs:element  name="message_s2s" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:complexType name="TcheckBalResponse">
+                <xs:sequence>
+                    <xs:element  name="resultCode" type="xs:string"/>
+                    <xs:element  name="resultDesc" type="xs:string"/>
+                    <xs:element  name="partnId" type="xs:string"/>
+                    <xs:element  name="transId" type="xs:string"/>
+                    <xs:element  name="systemId" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:complexType name="doCheckTransResponse">
+                <xs:sequence>
+                    <xs:element  name="resultCode" type="xs:string"/>
+                    <xs:element  name="resultDesc" type="xs:string"/>
+                    <xs:element  name="transId" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:complexType name="doM2MResponse">
+                <xs:sequence>
+                    <xs:element  name="resultCode" type="xs:string"/>
+                    <xs:element  name="resultDesc" type="xs:string"/>
+                    <xs:element  name="partnId" type="xs:string"/>
+                    <xs:element  name="transId" type="xs:string"/>
+                    <xs:element  name="systemId" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:complexType name="doM2SResponse">
+                <xs:sequence>
+                    <xs:element  name="resultCode" type="xs:string"/>
+                    <xs:element  name="resultDesc" type="xs:string"/>
+                    <xs:element  name="partnId" type="xs:string"/>
+                    <xs:element  name="transId" type="xs:string"/>
+                    <xs:element  name="systemId" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:complexType name="doS2MResponse">
+                <xs:sequence>
+                    <xs:element  name="resultCode" type="xs:string"/>
+                    <xs:element  name="resultDesc" type="xs:string"/>
+                    <xs:element  name="partnId" type="xs:string"/>
+                    <xs:element  name="transId" type="xs:string"/>
+                    <xs:element  name="systemId" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:complexType name="doS2SResponse">
+                <xs:sequence>
+                    <xs:element  name="resultCode" type="xs:string"/>
+                    <xs:element  name="resultDesc" type="xs:string"/>
+                    <xs:element  name="partnId" type="xs:string"/>
+                    <xs:element  name="transId" type="xs:string"/>
+                    <xs:element  name="systemId" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                    targetNamespace="http://exception.teamdevsolution.com/"
+                    xmlns:tns="http://exception.teamdevsolution.com/">
+            <xs:element name="InputOuputException" type="tns:InputOuputException"/>
+            <xs:complexType name="InputOuputException">
+                <xs:sequence>
+                    <xs:element  name="message" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                    targetNamespace="http://exception.teamdevsolution.com/"
+                    xmlns:tns="http://exception.teamdevsolution.com/">
+            <xs:element name="NoSuchAlgorithmException" type="tns:NoSuchAlgorithmException"/>
+            <xs:complexType name="NoSuchAlgorithmException">
+                <xs:sequence>
+                    <xs:element  name="message" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                    targetNamespace="http://exception.teamdevsolution.com/"
+                    xmlns:tns="http://exception.teamdevsolution.com/">
+            <xs:element name="KeyManagementException" type="tns:KeyManagementException"/>
+            <xs:complexType name="KeyManagementException">
+                <xs:sequence>
+                    <xs:element  name="message" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+
+    </wsdl:types>
+
+    <wsdl:message name="TcheckBal">
+        <wsdl:part name="parameters" element="tns:TcheckBal"/>
+    </wsdl:message>
+    <wsdl:message name="TcheckBalResponse">
+        <wsdl:part name="parameters" element="tns:TcheckBalResponse"/>
+    </wsdl:message>
+
+    <wsdl:message name="doCheckTrans">
+        <wsdl:part name="parameters" element="tns:doCheckTrans"/>
+    </wsdl:message>
+    <wsdl:message name="doCheckTransResponse">
+        <wsdl:part name="parameters" element="tns:doCheckTransResponse"/>
+    </wsdl:message>
+
+    <wsdl:message name="doM2M">
+        <wsdl:part name="parameters" element="tns:doM2M"/>
+    </wsdl:message>
+    <wsdl:message name="doM2MResponse">
+        <wsdl:part name="parameters" element="tns:doM2MResponse"/>
+    </wsdl:message>
+
+    <wsdl:message name="doM2S">
+        <wsdl:part name="parameters" element="tns:doM2S"/>
+    </wsdl:message>
+    <wsdl:message name="doM2SResponse">
+        <wsdl:part name="parameters" element="tns:doM2SResponse"/>
+    </wsdl:message>
+
+    <wsdl:message name="doS2M">
+        <wsdl:part name="parameters" element="tns:doS2M"/>
+    </wsdl:message>
+    <wsdl:message name="doS2MResponse">
+        <wsdl:part name="parameters" element="tns:doS2MResponse"/>
+    </wsdl:message>
+
+    <wsdl:message name="doS2S">
+        <wsdl:part name="parameters" element="tns:doS2S"/>
+    </wsdl:message>
+    <wsdl:message name="doS2SResponse">
+        <wsdl:part name="parameters" element="tns:doS2SResponse"/>
+    </wsdl:message>
+
+    <wsdl:message name="InputOuputException">
+        <wsdl:part name="InputOuputException" element="ns1:InputOuputException"/>
+    </wsdl:message>
+    <wsdl:message name="NoSuchAlgorithmException">
+        <wsdl:part name="NoSuchAlgorithmException" element="ns1:NoSuchAlgorithmException"/>
+    </wsdl:message>
+    <wsdl:message name="KeyManagementException">
+        <wsdl:part name="KeyManagementException" element="ns1:KeyManagementException"/>
+    </wsdl:message>
+
+    <wsdl:portType name="ApigwomService_PortType">
+        <wsdl:operation name="TcheckBal">
+            <wsdl:input name="TcheckBal" message="tns:TcheckBal"/>
+            <wsdl:output name="TcheckBalResponse" message="tns:TcheckBalResponse"/>
+            <wsdl:fault name="InputOuputException" message="tns:InputOuputException"/>
+            <wsdl:fault name="NoSuchAlgorithmException" message="tns:NoSuchAlgorithmException"/>
+            <wsdl:fault name="KeyManagementException" message="tns:KeyManagementException"/>
+        </wsdl:operation>
+        <wsdl:operation name="doCheckTrans">
+            <wsdl:input name="doCheckTrans" message="tns:doCheckTrans"/>
+            <wsdl:output name="doCheckTransResponse" message="tns:doCheckTransResponse"/>
+            <wsdl:fault name="InputOuputException" message="tns:InputOuputException"/>
+            <wsdl:fault name="NoSuchAlgorithmException" message="tns:NoSuchAlgorithmException"/>
+            <wsdl:fault name="KeyManagementException" message="tns:KeyManagementException"/>
+        </wsdl:operation>
+        <wsdl:operation name="doM2M">
+            <wsdl:input name="doM2M" message="tns:doM2M"/>
+            <wsdl:output name="doM2MResponse" message="tns:doM2MResponse"/>
+            <wsdl:fault name="InputOuputException" message="tns:InputOuputException"/>
+            <wsdl:fault name="NoSuchAlgorithmException" message="tns:NoSuchAlgorithmException"/>
+            <wsdl:fault name="KeyManagementException" message="tns:KeyManagementException"/>
+        </wsdl:operation>
+        <wsdl:operation name="doM2S">
+            <wsdl:input name="doM2S" message="tns:doM2S"/>
+            <wsdl:output name="doM2SResponse" message="tns:doM2SResponse"/>
+            <wsdl:fault name="InputOuputException" message="tns:InputOuputException"/>
+            <wsdl:fault name="NoSuchAlgorithmException" message="tns:NoSuchAlgorithmException"/>
+            <wsdl:fault name="KeyManagementException" message="tns:KeyManagementException"/>
+        </wsdl:operation>
+        <wsdl:operation name="doS2M">
+            <wsdl:input name="doS2M" message="tns:doS2M"/>
+            <wsdl:output name="doS2MResponse" message="tns:doS2MResponse"/>
+            <wsdl:fault name="InputOuputException" message="tns:InputOuputException"/>
+            <wsdl:fault name="NoSuchAlgorithmException" message="tns:NoSuchAlgorithmException"/>
+            <wsdl:fault name="KeyManagementException" message="tns:KeyManagementException"/>
+        </wsdl:operation>
+        <wsdl:operation name="doS2S">
+            <wsdl:input name="doS2S" message="tns:doS2S"/>
+            <wsdl:output name="doS2SResponse" message="tns:doS2SResponse"/>
+            <wsdl:fault name="InputOuputException" message="tns:InputOuputException"/>
+            <wsdl:fault name="NoSuchAlgorithmException" message="tns:NoSuchAlgorithmException"/>
+            <wsdl:fault name="KeyManagementException" message="tns:KeyManagementException"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="ApigwomServiceSoapBinding" type="tns:ApigwomService_PortType">
+
+        <soap12:binding style="document" transport="http://schemas.xml.soap.org/soap/http"/>
+
+        <wsdl:operation name="TcheckBal">
+            <soap12:operation soapAction="" style="document"/>
+            <wsdl:input name="TcheckBal">
+                <soap12:body parts="parameters" use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="TcheckBalResponse">
+                <soap12:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="InputOuputException">
+                <soap12:fault name="InputOuputException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="NoSuchAlgorithmException">
+                <soap12:fault name="NoSuchAlgorithmException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="KeyManagementException">
+                <soap12:fault name="KeyManagementException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="doCheckTrans">
+            <soap12:operation soapAction="" style="document"/>
+            <wsdl:input name="doCheckTrans">
+                <soap12:body parts="parameters" use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="doCheckTransResponse">
+                <soap12:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="InputOuputException">
+                <soap12:fault name="InputOuputException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="NoSuchAlgorithmException">
+                <soap12:fault name="NoSuchAlgorithmException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="KeyManagementException">
+                <soap12:fault name="KeyManagementException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="doM2M">
+            <soap12:operation soapAction="" style="document"/>
+            <wsdl:input name="doM2M">
+                <soap12:body parts="parameters" use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="doM2MResponse">
+                <soap12:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="InputOuputException">
+                <soap12:fault name="InputOuputException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="NoSuchAlgorithmException">
+                <soap12:fault name="NoSuchAlgorithmException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="KeyManagementException">
+                <soap12:fault name="KeyManagementException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="doM2S">
+            <soap12:operation soapAction="" style="document"/>
+            <wsdl:input name="doM2S">
+                <soap12:body parts="parameters" use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="doM2SResponse">
+                <soap12:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="InputOuputException">
+                <soap12:fault name="InputOuputException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="NoSuchAlgorithmException">
+                <soap12:fault name="NoSuchAlgorithmException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="KeyManagementException">
+                <soap12:fault name="KeyManagementException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="doS2M">
+            <soap12:operation soapAction="" style="document"/>
+            <wsdl:input name="doS2M">
+                <soap12:body parts="parameters" use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="doS2MResponse">
+                <soap12:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="InputOuputException">
+                <soap12:fault name="InputOuputException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="NoSuchAlgorithmException">
+                <soap12:fault name="NoSuchAlgorithmException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="KeyManagementException">
+                <soap12:fault name="KeyManagementException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="doS2S">
+            <soap12:operation soapAction="" style="document"/>
+            <wsdl:input name="doS2S">
+                <soap12:body parts="parameters" use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="doS2SResponse">
+                <soap12:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="InputOuputException">
+                <soap12:fault name="InputOuputException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="NoSuchAlgorithmException">
+                <soap12:fault name="NoSuchAlgorithmException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="KeyManagementException">
+                <soap12:fault name="KeyManagementException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="ApigwomService">
+        <wsdl:port name="ApigwomPort" binding="tns:ApigwomServiceSoapBinding">
+            <soap12:address location="http://eb-pc0ftjtt:8080/apigatewayom/apigwomService"/>
+            <!--<wsp:PolicyReference URI="#UsernameToken" />-->
+        </wsdl:port>
+    </wsdl:service>
+
+    <!--<wsp:Policy-->
+            <!--xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"-->
+            <!--xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"-->
+            <!--xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702"-->
+            <!--wsu:Id="UsernameToken">-->
+
+        <!--<wsp:ExactlyOne>-->
+            <!--<wsp:All>-->
+                <!--<sp:SupportingTokens>-->
+                    <!--<wsp:Policy>-->
+                        <!--<sp:UsernameToken sp:IncludeToken="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702/IncludeToken/AlwaysToRecipient" >-->
+                            <!--<wsp:Policy>-->
+                                <!--<sp:HashPassword/>-->
+                            <!--</wsp:Policy>-->
+                        <!--</sp:UsernameToken>-->
+                    <!--</wsp:Policy>-->
+                <!--</sp:SupportingTokens>-->
+            <!--</wsp:All>-->
+        <!--</wsp:ExactlyOne>-->
+
+    <!--</wsp:Policy>-->
+
+</wsdl:definitions>
